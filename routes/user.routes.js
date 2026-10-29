@@ -7,5 +7,6 @@ router.post('/signup',UserController.signup);
 router.post('/login',UserController.login);
 router.get('/getAllUsers',auth,UserController.getAllUsers)
 router.delete('/softDelete/:id',UserController.softDeleteUser)
+router.post('/newprofile',auth,UserController.addUserProfile)
 
 module.exports=router

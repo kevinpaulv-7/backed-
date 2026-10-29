@@ -44,8 +44,25 @@ class UserController{
         }
     catch(err){
             return res.status(500).json({message:err.message})
-
+        }
     }
+    async addUserProfile(req,res){
+        try{
+            const userId=req.user.id;
+            const{age,dob,bio}=req.body;
+            if(!userId){
+                return res.status(400).json({message:"User Id is required"});
+            }
+
+            const newUserProfile = await UserService.addUserProfile(userId,{age,dob,bio});
+            res.status(201).json(newUserProfile);
+        }catch(err){
+            if(err.code===11000){
+                return res.status.json({message:"A profile for this user already exist"});
+            }
+            console.log(err);
+            res.status(400).json({error:err.message});
+        }
     }
 }
 module.exports= new UserController();

@@ -22,10 +22,15 @@ const userSchema=new mongoose.Schema(
             type:Boolean,
             default:true,
         },
+        // profile:{
+        //     type:mongoose.Schema.Types.ObjectId,
+        //     ref:"UserProfile",
+        // },
     },
     {
         timestamps:true,
     }
 )
 const User=mongoose.model("User",userSchema);
+
 module.exports=User;

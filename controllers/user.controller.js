@@ -58,7 +58,7 @@ class UserController{
             res.status(201).json(newUserProfile);
         }catch(err){
             if(err.code===11000){
-                return res.status.json({message:"A profile for this user already exist"});
+                return res.status(409).json({message:"A profile for this user already exist"});
             }
             console.log(err);
             res.status(400).json({error:err.message});
